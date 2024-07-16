@@ -10,7 +10,8 @@ reviews = pd.read_csv('reviews.csv')
 review_count_by_listing = reviews['listing_id'].value_counts()
 qt_district_listings['review_count'] = qt_district_listings['id'].map(review_count_by_listing)
 qt_district_listings_with_reviews = qt_district_listings[qt_district_listings['review_count'] > 5]
-qt_listings_w_const_reviews = qt_district_listings_with_reviews[qt_district_listings_with_reviews['reviews_per_month'] >= 1]
+qt_listings_w_const_reviews = qt_district_listings_with_reviews[qt_district_listings_with_reviews['reviews_per_month']
+                                                                >= 1]
 property_types = ['Entire home',
                   'Entire vacation home',
                   'Entire apartment',
@@ -37,6 +38,7 @@ sns.histplot(data=filtered_listings, x='price', bins=20)
 plt.title('Price distribution of listings')
 plt.show()
 
+print(f'Median price: ${filtered_listings["price"].median()}')
 
 ids_of_interest = filtered_listings['id']
 
