@@ -94,6 +94,9 @@ pip install -r requirements.txt
     - Probability of making a loss
     - Weekly cost estimates based on occupancy and fees.
 
+![Net Profit Distribution](net_profit_distribution.png)
+
+
 ## Future Improvements
 
 - Expand exploratory analysis with more visual insights (e.g., amenity distribution).
