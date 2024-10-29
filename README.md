@@ -1,6 +1,6 @@
 # Queenstown Airbnb Analysis and Financial Simulation
 
-This repository provides a quick analysis and a separate financial simulation model for Airbnb property listings in the Queenstown district. Specifically, I am modelling the estimate profitability of renting my houes on Airbnb under various occupancy rates, costs, and revenue scenarios. The additional exploratory data analysis provides insights into price distribution, review trends, and estimated monthly income.
+This repository provides a financial Monte Carlo simulation of my house listed on Airbnb and an additional basic analysis of the data. Specifically, I am modelling the estimate profitability of renting my houes on Airbnb under various occupancy rates, costs, and revenue scenarios. The additional exploratory data analysis provides insights into price distribution, review trends, and estimated monthly income.
 
 Note that I have omitted the data files for privacy reasons, but you can easily replicate the analysis by following the setup instructions below. Feel free to reach out if you have any questions or need further assistance!
 
@@ -45,10 +45,16 @@ Key features:
 1. **Run the data analysis and simulation**:
    Execute the script to load, filter, analyse, and simulate data for Queenstown properties:
    ```bash
-   python detailed_analysis.py
+   python analysis.py
    ```
    This will print profitability and income estimates, as well as display price distribution and monthly review counts.
 
+   Execute the simulation script:
+    ```bash
+    python detailed_analysis.py
+    ```
+    This will print profitability estimates, as well as display the profit/loss distribution for my house on Airbnb.
+    
 2. **View Results**:
    The output includes:
    - Median price of filtered listings.
