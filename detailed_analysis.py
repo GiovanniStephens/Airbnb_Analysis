@@ -61,7 +61,7 @@ filtered_listings.loc[:, 'price'] = filtered_listings['price'].str.replace('$', 
 
 
 # Define simulation parameters
-n_simulations = 1000
+n_simulations = 10000
 occupancy_rates = [0.755, 0.71, 0.93, 0.36, 0.76, 0.84, 0.36, 0.4, 0.5, 0.6]
 # Fit gde model to data
 kernel = gaussian_kde(occupancy_rates)
@@ -131,6 +131,7 @@ for month in months:
         aug_costs = simulate_monthly_cost(filtered_listings, 'aug')
         july_costs = (june_costs + aug_costs) / 2
         sim_night_cost_by_month.append(july_costs)
+
 # Calculate the average cost per night for the year
 sim_night_cost_annual_avgs = np.mean(sim_night_cost_by_month, axis=0)
 
@@ -141,10 +142,10 @@ sim_cleaning_fees_ph = np.random.triangular(left=40, mode=55, right=60, size=n_s
 sim_airbnb_fees = np.random.triangular(left=0.03, mode=0.0325, right=0.035, size=n_simulations)
 
 # Simulate management fees as triangular between 10% and 25% with mode at 15%
-sim_management_fees = np.random.triangular(left=0.1, mode=0.15, right=0.20, size=n_simulations)
+sim_management_fees = np.random.triangular(left=0.1, mode=0.15, right=0.25, size=n_simulations)
 
 # Simulate inspection fees between 50 and 150 (uniform)
-sim_inspection_fees = np.random.uniform(low=50, high=125, size=n_simulations)
+sim_inspection_fees = np.random.uniform(low=50, high=150, size=n_simulations)
 
 # Simulate booking fees between 0 and 50 (uniform)
 sim_booking_fees = np.random.uniform(low=0, high=50, size=n_simulations)
@@ -155,7 +156,7 @@ sim_marketing_fees = np.random.uniform(low=300, high=800, size=n_simulations)
 # Simulated revenue
 sim_revenue = sim_occupancy_rates * sim_night_cost_annual_avgs * 365
 
-# Sim cleaning cost 
+# Sim cleaning cost
 sim_cleaning_cost = sim_cleaning_fees_ph * n_nights / sim_stay_lengths
 
 # Sim Airbnb cost
