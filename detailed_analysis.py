@@ -141,17 +141,17 @@ sim_cleaning_fees_ph = np.random.triangular(left=40, mode=55, right=60, size=n_s
 # Simulate Airbnb fee as triangular between 3% and 3.5% with mode at 3.25%
 sim_airbnb_fees = np.random.triangular(left=0.03, mode=0.0325, right=0.035, size=n_simulations)
 
-# Simulate management fees as triangular between 10% and 25% with mode at 15%
-sim_management_fees = np.random.triangular(left=0.1, mode=0.15, right=0.25, size=n_simulations)
+# Simulate management fees as triangular between 10% and 20% with mode at 15%
+sim_management_fees = np.random.triangular(left=0.1, mode=0.15, right=0.2, size=n_simulations)
 
-# Simulate inspection fees between 50 and 150 (uniform)
-sim_inspection_fees = np.random.uniform(low=50, high=150, size=n_simulations)
+# Simulate inspection fees between 50 and 125 (uniform)
+sim_inspection_fees = np.random.uniform(low=50, high=125, size=n_simulations)
 
 # Simulate booking fees between 0 and 50 (uniform)
 sim_booking_fees = np.random.uniform(low=0, high=50, size=n_simulations)
 
 # Simulate marketing fees between 300 and 700 (uniform)
-sim_marketing_fees = np.random.uniform(low=300, high=800, size=n_simulations)
+sim_marketing_fees = np.random.uniform(low=300, high=700, size=n_simulations)
 
 # Simulated revenue
 sim_revenue = sim_occupancy_rates * sim_night_cost_annual_avgs * 365
