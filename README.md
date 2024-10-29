@@ -4,6 +4,8 @@ This repository provides a financial Monte Carlo simulation of my house listed o
 
 Note that I have omitted the data files for privacy reasons, but you can easily replicate the analysis by following the setup instructions below. Feel free to reach out if you have any questions or need further assistance!
 
+![Net Profit Distribution](net_profit_distribution.png)
+
 ## Overview
 
 The simulation combines data filtering, cost modelling, and statistical analysis for Airbnb listings to predict financial outcomes. It also includes data visualisation for listing prices and review patterns, helping to gauge listing popularity and seasonality. The simulation considers key variables like cleaning, booking, and management fees to estimate net profits, weekly costs, and revenue.
@@ -99,9 +101,6 @@ pip install -r requirements.txt
     - Percentile-based profit estimates
     - Probability of making a loss
     - Weekly cost estimates based on occupancy and fees.
-
-![Net Profit Distribution](net_profit_distribution.png)
-
 
 ## Future Improvements
 
