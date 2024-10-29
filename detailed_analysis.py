@@ -61,7 +61,7 @@ filtered_listings.loc[:, 'price'] = filtered_listings['price'].str.replace('$', 
 
 
 # Define simulation parameters
-n_simulations = 10000
+n_simulations = 1000
 occupancy_rates = [0.755, 0.71, 0.93, 0.36, 0.76, 0.84, 0.36, 0.4, 0.5, 0.6]
 # Fit gde model to data
 kernel = gaussian_kde(occupancy_rates)
@@ -141,10 +141,10 @@ sim_cleaning_fees_ph = np.random.triangular(left=40, mode=55, right=60, size=n_s
 sim_airbnb_fees = np.random.triangular(left=0.03, mode=0.0325, right=0.035, size=n_simulations)
 
 # Simulate management fees as triangular between 10% and 25% with mode at 15%
-sim_management_fees = np.random.triangular(left=0.1, mode=0.15, right=0.25, size=n_simulations)
+sim_management_fees = np.random.triangular(left=0.1, mode=0.15, right=0.20, size=n_simulations)
 
 # Simulate inspection fees between 50 and 150 (uniform)
-sim_inspection_fees = np.random.uniform(low=50, high=150, size=n_simulations)
+sim_inspection_fees = np.random.uniform(low=50, high=125, size=n_simulations)
 
 # Simulate booking fees between 0 and 50 (uniform)
 sim_booking_fees = np.random.uniform(low=0, high=50, size=n_simulations)
@@ -196,7 +196,7 @@ percentile_95 = np.percentile(sim_net_profit, 95)
 prob_loss = np.mean(sim_net_profit < 0)
 
 # Calculate the probability that the net profit is less than 10400
-prob_less_than_10400 = np.mean(sim_net_profit < -10400)
+prob_less_than_leasing = np.mean(sim_net_profit < -316*52)
 
 # Calculate the weekly cost where 50% of the density lies below this value
 weekly_cost_50th_percentile = -np.percentile(sim_net_profit, 50) / 52
@@ -204,16 +204,19 @@ weekly_cost_50th_percentile = -np.percentile(sim_net_profit, 50) / 52
 # Calculate the 10th percentile as a weekly cost
 weekly_cost_10th_percentile = -np.percentile(sim_net_profit, 10) / 52
 
+expected_weekly_cost = -np.mean(sim_net_profit) / 52
+
 # Print the results
 print(f'5th percentile net profit: {percentile_5:.2f}')
 print(f'95th percentile net profit: {percentile_95:.2f}')
 print(f'Probability of making a loss: {prob_loss:.2f}')
-print((f'Probability of net profit less than -$10,400 '
-      f'(i.e., paying more than $200 extra per week on the house): {prob_less_than_10400*100:.2f}%'))
+print((f'Probability of cost being more than leasing (-${316*52}) '
+      f'(i.e., paying more than $316 extra per week on the house): {prob_less_than_leasing*100:.2f}%'))
 print((f'Expected weekly cost (i.e., 50:50 that the cost will be higher or lower than this value): '
        f'{weekly_cost_50th_percentile:.2f}'))
 print((f'Weekly cost at the 10th percentile (i.e., 90% chance that the weekly cost will'
        f' be less than this): {weekly_cost_10th_percentile:.2f}'))
+print(f'Expected weekly cost: {expected_weekly_cost:.2f}')
 
 # Plot the net profit distribution
 plt.figure(figsize=(12, 6))
