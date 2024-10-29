@@ -211,13 +211,12 @@ expected_weekly_cost = -np.mean(sim_net_profit) / 52
 print(f'5th percentile net profit: {percentile_5:.2f}')
 print(f'95th percentile net profit: {percentile_95:.2f}')
 print(f'Probability of making a loss: {prob_loss:.2f}')
-print((f'Probability of cost being more than leasing (-${316*52}) '
+print((f'Probability of cost being more than leasing (${316*52}) '
       f'(i.e., paying more than $316 extra per week on the house): {prob_less_than_leasing*100:.2f}%'))
 print((f'Expected weekly cost (i.e., 50:50 that the cost will be higher or lower than this value): '
-       f'{weekly_cost_50th_percentile:.2f}'))
+       f'${weekly_cost_50th_percentile:.2f} p.w.'))
 print((f'Weekly cost at the 10th percentile (i.e., 90% chance that the weekly cost will'
-       f' be less than this): {weekly_cost_10th_percentile:.2f}'))
-print(f'Expected weekly cost: {expected_weekly_cost:.2f}')
+       f' be cheaper than this): ${weekly_cost_10th_percentile:.2f}'))
 
 # Plot the net profit distribution
 plt.figure(figsize=(12, 6))
@@ -225,10 +224,10 @@ plt.hist(sim_net_profit, bins=50, density=True, alpha=0.6)
 plt.axvline(percentile_5, color='r', linestyle='--', label='5th percentile')
 plt.axvline(percentile_95, color='b', linestyle='--', label='95th percentile')
 plt.axvline(0, color='g', linestyle='--', label='Break-even')
-plt.axvline(-10400, color='m', linestyle='--', label='Extra $200 per week')
-plt.axvline(-weekly_cost_50th_percentile * 52, color='k', linestyle='--', label='50th percentile weekly cost')
-plt.xlabel('Net Profit')
+plt.axvline(-10400, color='m', linestyle='--', label='Paying an extra $200 per week')
+plt.axvline(-weekly_cost_50th_percentile * 52, color='k', linestyle='--', label='50th percentile')
+plt.xlabel('Net Profit p.a.')
 plt.ylabel('Density')
-plt.title('Net Profit Distribution')
+plt.title('Expected Net Profit Distribution of my House on Airbnb p.a.')
 plt.legend()
 plt.savefig('net_profit_distribution.png')
